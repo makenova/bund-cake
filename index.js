@@ -32,6 +32,10 @@ module.exports = function(app) {
         return allFiles
     }
 
+    var asyncMinify = function(fileStrings, hash) {
+        // TODO: can uglify minify asynchronously?
+    }
+
 
     return {
         js: function() {
@@ -50,6 +54,10 @@ module.exports = function(app) {
                 } else {
                     totalFile = uglify.minify(concatFiles(result), {fromString:true}).code
                     cache[hash] = totalFile
+
+                    // Minify asynchronously to save some initial time.
+                    // If you minify initially, it will take several seconds on the first hit.
+                    asyncMinify(result, hash)
                 }
             })
 

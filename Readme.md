@@ -15,3 +15,7 @@ And this snippet of EJS in your view,
 ```
 <%- bund.js('./public/javascripts/annoying-popups.js', './public/javascripts/one-weird-tip.js') %>
 ```
+
+## Issues/Concerns
+I haven't tested this with JS files from another domain or CDN.
+The very first hit to the server is slow, but is okay after that.
