@@ -6,7 +6,12 @@ The JavaScript outputs to /assets/bundle/[bundled-file].js
 
 ## Usage
 In app.js, 
-	GLOBAL.bund = require('bund-cake')(app)
+```
+GLOBAL.bund = require('bund-cake')(app)
+```
 
 And this snippet of EJS in your view,
-	<%- bund.js('./public/javascripts/annoying-popups.js', './public/javascripts/one-weird-tip.js') %>
+
+```
+<%- bund.js('./public/javascripts/annoying-popups.js', './public/javascripts/one-weird-tip.js') %>
+```
