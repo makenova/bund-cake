@@ -37,18 +37,23 @@ module.exports = function(app) {
         js: function() {
             var files = arguments
               , hash = makeHash(files)
+              , script = "<script type='text/javascript' src='/assets/bundle/" + hash + ".js'></script>"
+
+            if(cache[hash]) {
+                return script
+            }
 
             async.concatSeries(files, fs.readFile, function(error, result) {
                 if(error) {
                     console.log('There was an error somewhere.')
                     console.log('ERROR:: ' + error)
                 } else {
-                    totalFile = uglify.minify(concatFiles(result), {fromString:true})
-                    cache[hash] = totalFile.code
+                    totalFile = uglify.minify(concatFiles(result), {fromString:true}).code
+                    cache[hash] = totalFile
                 }
             })
 
-            return "<script type='text/javascript' src='/assets/bundle/" + hash + ".js'></script>"
+            return script
         }
     }
 }
