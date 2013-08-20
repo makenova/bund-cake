@@ -5,7 +5,7 @@ A JavaScript bundler and minifier for express.
 The JavaScript outputs to /assets/bundle/[bundled-file].js
 
 ## Usage
-In app.js, 
+In app.js (after your app.configure() block)
 ```
 GLOBAL.bund = require('bund-cake')(app)
 ```
